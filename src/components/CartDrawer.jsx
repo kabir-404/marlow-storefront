@@ -3,21 +3,60 @@ import { useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext.jsx'
 import CartItem from './CartItem.jsx'
 
+function getFocusable(container) {
+  return [
+    ...container.querySelectorAll(
+      'a[href], button:not([disabled]), select, input, textarea, [tabindex]:not([tabindex="-1"])'
+    ),
+  ]
+}
+
 export default function CartDrawer() {
   const { items, itemCount, subtotal, isDrawerOpen, closeDrawer } = useCart()
   const navigate = useNavigate()
+  const drawerRef = useRef(null)
   const closeButtonRef = useRef(null)
+  const previouslyFocusedRef = useRef(null)
+
+  // Keep the closed drawer's controls out of tab order — they're only
+  // hidden off-screen via a transform, not removed from the DOM.
+  useEffect(() => {
+    if (drawerRef.current) drawerRef.current.inert = !isDrawerOpen
+  }, [isDrawerOpen])
 
   useEffect(() => {
     if (!isDrawerOpen) return
 
+    previouslyFocusedRef.current = document.activeElement
+    closeButtonRef.current?.focus()
+
     function handleKeyDown(e) {
-      if (e.key === 'Escape') closeDrawer()
+      if (e.key === 'Escape') {
+        closeDrawer()
+        return
+      }
+      if (e.key !== 'Tab' || !drawerRef.current) return
+
+      const focusable = getFocusable(drawerRef.current)
+      if (focusable.length === 0) return
+
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
     }
 
     document.addEventListener('keydown', handleKeyDown)
-    closeButtonRef.current?.focus()
-    return () => document.removeEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      previouslyFocusedRef.current?.focus?.()
+    }
   }, [isDrawerOpen, closeDrawer])
 
   return (
@@ -31,6 +70,7 @@ export default function CartDrawer() {
       />
 
       <aside
+        ref={drawerRef}
         role="dialog"
         aria-modal="true"
         aria-label="Shopping cart"
