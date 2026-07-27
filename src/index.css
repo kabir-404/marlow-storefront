@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: theme('fontFamily.sans');
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: theme('fontFamily.display');
+    letter-spacing: 0.01em;
+  }
+
+  ::selection {
+    background-color: theme('colors.marlow-acid');
+    color: theme('colors.marlow-ink');
+  }
+
+  /* Visible keyboard focus states everywhere, no invisible-focus defaults */
+  :focus-visible {
+    outline: 2px solid theme('colors.marlow-acid');
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-marlow-acid text-marlow-ink font-sans font-bold uppercase tracking-wide text-sm px-5 py-3 rounded-sm transition-transform duration-150 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-40 disabled:pointer-events-none disabled:hover:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 bg-transparent border border-marlow-bone/30 text-marlow-bone font-sans font-semibold uppercase tracking-wide text-sm px-5 py-3 rounded-sm transition-colors duration-150 hover:border-marlow-acid hover:text-marlow-acid;
+  }
+}
