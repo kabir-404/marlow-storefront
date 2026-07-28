@@ -87,7 +87,7 @@ export default function CartDrawer() {
             type="button"
             onClick={closeDrawer}
             aria-label="Close cart"
-            className="flex h-8 w-8 items-center justify-center rounded-sm text-marlow-bone transition-colors hover:text-marlow-acid"
+            className="flex h-11 w-11 items-center justify-center rounded-sm text-marlow-bone transition-colors hover:text-marlow-acid"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />

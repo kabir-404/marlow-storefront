@@ -61,49 +61,55 @@ export default function Checkout() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
       <h1 className="mb-8 font-display text-3xl text-marlow-bone sm:text-4xl">Order Review</h1>
 
-      <ul className="mb-6 divide-y divide-marlow-line border-y border-marlow-line">
-        {items.map((item) => (
-          <li key={item.id} className="flex items-center gap-4 py-4">
-            <img src={item.thumbnail} alt={item.title} className="h-16 w-16 rounded-sm object-cover" />
-            <div className="flex-1">
-              <p className="text-sm font-semibold text-marlow-bone">{item.title}</p>
-              <p className="text-xs text-marlow-smoke">Qty {item.quantity}</p>
-            </div>
-            <span className="font-display text-base text-marlow-acid">
-              ${(item.price * item.quantity).toFixed(2)}
-            </span>
-          </li>
-        ))}
-      </ul>
+      <div className="grid gap-10 lg:grid-cols-3 lg:items-start">
+        <ul className="divide-y divide-marlow-line border-y border-marlow-line lg:col-span-2">
+          {items.map((item) => (
+            <li key={item.id} className="flex items-center gap-4 py-4">
+              <img src={item.thumbnail} alt={item.title} className="h-16 w-16 rounded-sm object-cover" />
+              <div className="flex-1">
+                <p className="text-sm font-semibold text-marlow-bone">{item.title}</p>
+                <p className="text-xs text-marlow-smoke">Qty {item.quantity}</p>
+              </div>
+              <span className="font-display text-base text-marlow-acid">
+                ${(item.price * item.quantity).toFixed(2)}
+              </span>
+            </li>
+          ))}
+        </ul>
 
-      <div className="ml-auto max-w-xs space-y-2">
-        <div className="flex justify-between text-sm text-marlow-smoke">
-          <span>Subtotal</span>
-          <span>${subtotal.toFixed(2)}</span>
-        </div>
-        <div className="flex justify-between text-sm text-marlow-smoke">
-          <span>Shipping</span>
-          <span>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
-        </div>
-        <div className="flex justify-between text-sm text-marlow-smoke">
-          <span>Estimated Tax</span>
-          <span>${tax.toFixed(2)}</span>
-        </div>
-        <div className="flex justify-between border-t border-marlow-line pt-2 font-display text-xl text-marlow-bone">
-          <span>Total</span>
-          <span className="text-marlow-acid">${total.toFixed(2)}</span>
+        <div className="space-y-6 rounded-sm border border-marlow-line bg-marlow-panel p-6">
+          <div className="space-y-2">
+            <div className="flex justify-between text-sm text-marlow-smoke">
+              <span>Subtotal</span>
+              <span>${subtotal.toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between text-sm text-marlow-smoke">
+              <span>Shipping</span>
+              <span>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
+            </div>
+            <div className="flex justify-between text-sm text-marlow-smoke">
+              <span>Estimated Tax</span>
+              <span>${tax.toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between border-t border-marlow-line pt-2 font-display text-xl text-marlow-bone">
+              <span>Total</span>
+              <span className="text-marlow-acid">${total.toFixed(2)}</span>
+            </div>
+          </div>
+
+          <div>
+            <button type="button" onClick={handlePlaceOrder} className="btn-primary w-full">
+              Place Order
+            </button>
+            <p className="mt-3 text-center text-xs text-marlow-smoke">
+              Demo checkout only — no payment is collected or processed.
+            </p>
+          </div>
         </div>
       </div>
-
-      <button type="button" onClick={handlePlaceOrder} className="btn-primary mt-8 w-full">
-        Place Order
-      </button>
-      <p className="mt-3 text-center text-xs text-marlow-smoke">
-        Demo checkout only — no payment is collected or processed.
-      </p>
     </div>
   )
 }

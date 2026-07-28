@@ -11,7 +11,7 @@ export default function FilterBar({ categories, activeCategory, onCategoryChange
         <button
           type="button"
           onClick={() => onCategoryChange('all')}
-          className={`rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-wide transition-colors ${
+          className={`flex min-h-11 items-center justify-center rounded-full border px-5 text-xs font-semibold uppercase tracking-wide transition-colors ${
             activeCategory === 'all'
               ? 'border-marlow-acid bg-marlow-acid text-marlow-ink'
               : 'border-marlow-line text-marlow-smoke hover:border-marlow-acid hover:text-marlow-bone'
@@ -24,7 +24,7 @@ export default function FilterBar({ categories, activeCategory, onCategoryChange
             key={category}
             type="button"
             onClick={() => onCategoryChange(category)}
-            className={`rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-wide transition-colors ${
+            className={`flex min-h-11 items-center justify-center rounded-full border px-5 text-xs font-semibold uppercase tracking-wide transition-colors ${
               activeCategory === category
                 ? 'border-marlow-acid bg-marlow-acid text-marlow-ink'
                 : 'border-marlow-line text-marlow-smoke hover:border-marlow-acid hover:text-marlow-bone'

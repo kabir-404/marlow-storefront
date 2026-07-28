@@ -19,7 +19,7 @@ export default function CartItem({ item }) {
             type="button"
             onClick={() => removeItem(item.id)}
             aria-label={`Remove ${item.title} from cart`}
-            className="text-marlow-smoke transition-colors hover:text-marlow-blaze"
+            className="flex h-11 w-11 flex-shrink-0 items-center justify-center text-marlow-smoke transition-colors hover:text-marlow-blaze"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -33,7 +33,7 @@ export default function CartItem({ item }) {
               type="button"
               onClick={() => decrementItem(item.id)}
               aria-label={`Decrease quantity of ${item.title}`}
-              className="flex h-7 w-7 items-center justify-center rounded-sm border border-marlow-line text-marlow-bone transition-colors hover:border-marlow-acid hover:text-marlow-acid"
+              className="flex h-11 w-11 items-center justify-center rounded-sm border border-marlow-line text-marlow-bone transition-colors hover:border-marlow-acid hover:text-marlow-acid"
             >
               −
             </button>
@@ -43,7 +43,7 @@ export default function CartItem({ item }) {
               onClick={() => incrementItem(item.id)}
               disabled={atMaxStock}
               aria-label={`Increase quantity of ${item.title}`}
-              className="flex h-7 w-7 items-center justify-center rounded-sm border border-marlow-line text-marlow-bone transition-colors hover:border-marlow-acid hover:text-marlow-acid disabled:opacity-30 disabled:hover:border-marlow-line disabled:hover:text-marlow-bone"
+              className="flex h-11 w-11 items-center justify-center rounded-sm border border-marlow-line text-marlow-bone transition-colors hover:border-marlow-acid hover:text-marlow-acid disabled:opacity-30 disabled:hover:border-marlow-line disabled:hover:text-marlow-bone"
             >
               +
             </button>

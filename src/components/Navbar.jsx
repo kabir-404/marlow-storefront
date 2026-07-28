@@ -15,7 +15,7 @@ export default function Navbar() {
           type="button"
           onClick={toggleDrawer}
           aria-label={`Open cart, ${itemCount} item${itemCount === 1 ? '' : 's'}`}
-          className="relative flex items-center gap-2 rounded-sm border border-marlow-line px-3 py-2 text-marlow-bone transition-colors hover:border-marlow-acid hover:text-marlow-acid"
+          className="relative flex min-h-11 items-center gap-2 rounded-sm border border-marlow-line px-3 py-2 text-marlow-bone transition-colors hover:border-marlow-acid hover:text-marlow-acid"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

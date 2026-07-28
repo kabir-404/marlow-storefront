@@ -120,12 +120,12 @@ export default function ProductDetail() {
               <label className="text-xs font-semibold uppercase tracking-wide text-marlow-smoke" htmlFor="quantity">
                 Quantity
               </label>
-              <div className="flex items-center gap-3 rounded-sm border border-marlow-line px-3 py-2">
+              <div className="flex items-center gap-1 rounded-sm border border-marlow-line">
                 <button
                   type="button"
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
                   aria-label="Decrease quantity"
-                  className="text-marlow-bone transition-colors hover:text-marlow-acid"
+                  className="flex h-11 w-11 items-center justify-center text-marlow-bone transition-colors hover:text-marlow-acid"
                 >
                   −
                 </button>
@@ -136,7 +136,7 @@ export default function ProductDetail() {
                   type="button"
                   onClick={() => setQuantity((q) => Math.min(maxQty, q + 1))}
                   aria-label="Increase quantity"
-                  className="text-marlow-bone transition-colors hover:text-marlow-acid"
+                  className="flex h-11 w-11 items-center justify-center text-marlow-bone transition-colors hover:text-marlow-acid"
                 >
                   +
                 </button>
